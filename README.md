@@ -21,4 +21,5 @@ Die Umgebung wird mit Intellij, Python und FTP geführt und mit git dokumentiert
 Dazu wird uns ein AWS Amazon Server bereitgestellt.
 
 UML Aktivitätsdiagram:
-![Activity_diagram.png](Activity_diagram.png)
+![Activity-Diagram.png](Activity-Diagram.png)
+
