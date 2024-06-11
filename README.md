@@ -19,3 +19,6 @@ wir wollen mit Remotedaten arbeiten, also werden die Daten auf einen Server gela
 Die Umgebung wird mit Intellij, Python und FTP geführt und mit git dokumentiert.
 
 Dazu wird uns ein AWS Amazon Server bereitgestellt.
+
+UML Aktivitätsdiagram:
+![img.png](img.png)
