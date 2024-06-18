@@ -46,11 +46,13 @@ Verarbeitung wie Filterung und Speicherfähigkeit der Daten.
 Zip und Tar Fähigkeit beim output.
 Schöne TUI Oberfläche beim starten des Programms.
 
-### UML Aktivitätsdiagram/Verarbeitung:
-
-<img width="482" alt="Activity-Diagram" src="https://github.com/MaxHD00/m122-Dataproject/assets/31143468/94f4050c-d5fa-43ce-be29-bcd2951c4a84">
-
 ### Systemdesign:
 
-<img width="482" alt="Systemdesign" src="https://github.com/MaxHD00/m122-Dataproject/assets/31143468/f43c7349-6273-4b5d-8a8b-7cf2c2c17ada">
+<img width="482" alt="Systemdesign" src="https://github.com/MaxHD00/m122-Dataproject/assets/31143468/8d62bf1f-6e0a-4e3e-b9a0-7ce6029350c6">
+
+### UML Aktivitätsdiagram/Verarbeitung:
+
+<img width="482" alt="Activity-Diagram" src="https://github.com/MaxHD00/m122-Dataproject/assets/31143468/e87d7f03-70f6-4c9e-8b89-4fe88d07dc96">
+
+
 
