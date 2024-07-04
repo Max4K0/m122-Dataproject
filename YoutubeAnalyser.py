@@ -34,7 +34,7 @@ def load_config(config_file):
     with open(config_file, 'r') as file:
         config = json.load(file)
 
-    
+
 
     # Downloadart validieren
     valid_download_types = ['tar', 'zip', 'txt']
@@ -43,12 +43,12 @@ def load_config(config_file):
         settings['Downloadart'] = download_type
     else:
         raise ValueError("Fehlerhafte Configfile: Downloadart ist ungültig.")
-        
+
 
     # Modus kann "Compare", "Filter", "Both" oder "None" sein
     valid_mode_types = ['Compare', 'Filter', 'Both', "None"]
     mode_type = config.get('Modus')
-    if mode in valid_mode_types:
+    if mode_type in valid_mode_types:
         settings['Modus'] = mode_type
     else:
         raise ValueError("Fehlerhafte Configfile: Modus ist ungültig.")
@@ -64,7 +64,7 @@ def load_config(config_file):
     youtube_links = config.get('Youtube Links')
     for ylink in youtube_links:
         ylink.replace("https://www.youtube.com/watch?v=", "")
-        
+
     if youtube_links and isinstance(youtube_links, list) and all(isinstance(link, str) for link in youtube_links):
         settings['Youtube Links'] = youtube_links
 
@@ -124,15 +124,15 @@ def get_video_details(video_id):
 # Funktion zum Vergleichen und Sortieren der Arrays
 def compare_and_sort(arrays, output_count):
     comparisons = []
-    
+
     # Vergleich der Arrays (nur die ersten drei Arrays werden verglichen)
     for i in range(len(arrays[0])):
         max_value = max(arrays[0][i], arrays[1][i], arrays[2][i])
         comparisons.append(max_value)
-    
+
     # Absteigend sortieren
     comparisons.sort(reverse=True)
-    
+
     # Begrenzen der Ausgabe auf die gewünschten Anzahl der größten Zahlen
     return comparisons[:output_count]
 
@@ -143,8 +143,8 @@ def write_arrays_to_file(arrays, filename):
         for array in arrays:
             file.write(' '.join(map(str, array)) + '\n\n')
     print(f"Arrays wurden in '{filename}' geschrieben.")
-    
-    
+
+
 # Funktion zum Filtern und Schreiben der Arrays basierend auf Booleans
 def filter_and_write_arrays(arrays, booleans, filename):
     with open(filename, 'w') as file:
@@ -166,15 +166,15 @@ def filter_and_write_arrays(arrays, booleans, filename):
 
 
 
-    
-    
-    
-    
+
+
+
+
 
 
 # Main
 if __name__ == "__main__":
-    config_file_path = 'config.json' 
+    config_file_path = 'config.json'
     try:
         settings = load_config(config_file_path)
         print("Einstellungen erfolgreich geladen:", settings)
@@ -187,13 +187,13 @@ if __name__ == "__main__":
             df.to_csv('video_details.csv', index=False)
 
         #for arrays in settings['Youtube Links']:
-         #   array1 = video_info
-            
+        #   array1 = video_info
 
-    
-    
-    
-    
+
+
+
+
+
         #for link in settings['Youtube Links']:
         #   arrays = arrays.append(get_video_details(link))
         #array1 = get_video_details()
@@ -202,23 +202,23 @@ if __name__ == "__main__":
         array3 = [5, 50, 40]
         array4 = [10, 20, 30]
         array5 = [10, 20, 30]
-        
+
         # Booleans für den Filtermodus
         a = True
         b = False
         c = True
         d = True
         e = False
-        
+
         # Variable für die Anzahl der auszugebenden größten Zahlen
         output_count = 2
-        
-        
-        
+
+
+
         # Hauptlogik basierend auf dem Modus
         arrays = [array1, array2, array3, array4, array5]
         booleans = [a, b, c, d, e]
-        
+
         if settings['Modus'] == "Compare":
             result = compare_and_sort(arrays, output_count)
             write_arrays_to_file(arrays, 'output_compare.txt')
@@ -232,8 +232,8 @@ if __name__ == "__main__":
             filter_and_write_arrays(arrays, booleans, 'output_both.txt')
         else:
             print(f"Der Modus {settings['Modus']} wird derzeit nicht unterstützt.")
-        
-    
+
+
     except Exception as e:
         print(e)
 
