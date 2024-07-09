@@ -3,11 +3,10 @@ import pandas as pd
 import json
 import os
 
-
-
-
 BASE_URL = 'https://youtube138.p.rapidapi.com/video/details/'
 settings = {}
+
+
 # Auslesen funktionen
 # Standard Konfigurationsdatei
 def create_default_config(config_file):
@@ -37,12 +36,11 @@ def create_default_config(config_file):
 def load_config(config_file):
     if not os.path.exists(config_file):
         create_default_config(config_file)
-        raise FileNotFoundError(f"Die Konfigurationsdatei {config_file} existierte nicht und wurde erstellt. Bitte füllen Sie die Datei aus.")
+        raise FileNotFoundError(
+            f"Die Konfigurationsdatei {config_file} existierte nicht und wurde erstellt. Bitte füllen Sie die Datei aus.")
 
     with open(config_file, 'r') as file:
         config = json.load(file)
-
-
 
     # Downloadart
     valid_download_types = ['tar', 'zip', 'txt']
@@ -51,7 +49,6 @@ def load_config(config_file):
         settings['Downloadart'] = download_type
     else:
         raise ValueError("Fehlerhafte Configfile: Downloadart ist ungültig.")
-
 
     # Modus kann "Compare", "Filter", "Both" oder "None" sein
     valid_mode_types = ['Compare', 'Filter', 'Both', "None"]
@@ -81,7 +78,6 @@ def load_config(config_file):
         download_path = os.getcwd()
     settings['Downloadpfad'] = download_path
 
-
     # Filter einlesen
     filter_settings = config.get('Filter', {})
     settings['Filter'] = {
@@ -96,10 +92,10 @@ def load_config(config_file):
     }
     return settings
 
+
 #API
 #Funktion zum Abrufen von Videodetails
 def get_video_details(video_id):
-
     headers = {
         'X-RapidAPI-Host': 'youtube138.p.rapidapi.com',
         'X-RapidAPI-Key': settings['API Key']
@@ -114,13 +110,10 @@ def get_video_details(video_id):
             'title': data.get('title'),
             'length (sek)': data.get('lengthSeconds'),
             'publishedDate': data.get('publishedDate'),
-            'viewCount': data.get('stats',  {}).get('views'),
+            'viewCount': data.get('stats', {}).get('views'),
             'likeCount': data.get('stats', {}).get('likes'),
             'url': f"https://www.youtube.com/watch?v={video_id}",
             'description': data.get('description'),
-
-
-
 
         }
         return video_info
@@ -139,20 +132,11 @@ def compare_and_sort(data):
 
 #Funktion zum Filtern oder ausgeben
 def filter_and_write_data(data, filter_settings, filename):
-    with open(filename, 'a') as file:
+    with open(settings['Downloadpfad'], filename, 'a') as file:
         for key, value in data.items():
             if filter_settings.get(key, True) or settings['Modus'] != "Filter" and settings['Modus'] != "Both":
                 file.write(f"{key}: {value}\n")
         file.write(f"-----------------------\n\n")
-
-
-
-
-
-
-
-
-
 
 
 #Main
@@ -178,35 +162,21 @@ if __name__ == "__main__":
 
         if settings['Modus'] == "Compare":
             result = compare_and_sort([csv])
-            filter_and_write_data(result, 'output.txt')
-        elif settings['Modus'] == "None":
-            for video in all_video_details:
-                filter_and_write_data(video, settings['Filter'], 'output.txt')
+            filter_and_write_data(result, settings['Filter'], settings['Downloadpfad'] + 'output.txt')
 
-        elif settings['Modus'] == "Filter":
+        elif settings['Modus'] == "None" or settings['Modus'] == "Filter":
             for video in all_video_details:
-                filter_and_write_data(video, settings['Filter'], 'output.txt')
+                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad'] + 'output.txt')
+
 
         elif settings['Modus'] == "Both":
             for video in all_video_details:
-                filter_and_write_data(video, settings['Filter'], 'output.txt')
+                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad'] + 'output.txt')
 
         else:
             print(f"Der Modus {settings['Modus']} wird derzeit nicht unterstützt.")
 
 
 
-
-
-
-        #for link in settings['Youtube Links']:
-        #   arrays = arrays.append(get_video_details(link))
-        #array1 = get_video_details()
-
-
-
-
     except Exception as e:
         print(e)
-
-
