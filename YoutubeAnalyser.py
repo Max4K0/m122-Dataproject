@@ -4,7 +4,8 @@ import requests
 import pandas as pd
 import json
 import os
-
+import sys
+import io
 
 BASE_URL = 'https://youtube138.p.rapidapi.com/video/details/'
 settings = {}
@@ -145,6 +146,10 @@ def filter_and_write_data(data, filter_settings, filename):
 #Main
 if __name__ == "__main__":
 
+    #Log
+    output = io.StringIO()
+    original_stdout = sys.stdout
+    sys.stdout = output
 
     config_path = 'config.json'
     try:
@@ -186,4 +191,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(e)
 
-
+    sys.stdout = original_stdout #log
+    with open('log.txt', 'a') as f:
+        f.write(output.getvalue())

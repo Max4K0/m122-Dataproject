@@ -132,3 +132,51 @@ likeCount: 1773
 url: https://www.youtube.com/watch?v=VyTfLV_MNWg
 -----------------------
 
+title: Joe Biden: Should he stay or should he go | 11KM - der tagesschau-Podcast
+length (sek): 1783
+publishedDate: 2024-07-08T21:40:20-07:00
+viewCount: 3695
+likeCount: 55
+url: https://www.youtube.com/watch?v=WmAh8dXLtt4
+-----------------------
+
+title: tagesschau 20:00 Uhr, 08.07.2024
+length (sek): 948
+publishedDate: 2024-07-08T11:35:02-07:00
+viewCount: 120961
+likeCount: 1775
+url: https://www.youtube.com/watch?v=VyTfLV_MNWg
+-----------------------
+
+title: Joe Biden: Should he stay or should he go | 11KM - der tagesschau-Podcast
+length (sek): 1783
+publishedDate: 2024-07-08T21:40:20-07:00
+viewCount: 3695
+likeCount: 55
+url: https://www.youtube.com/watch?v=WmAh8dXLtt4
+-----------------------
+
+title: tagesschau 20:00 Uhr, 08.07.2024
+length (sek): 948
+publishedDate: 2024-07-08T11:35:02-07:00
+viewCount: 120961
+likeCount: 1775
+url: https://www.youtube.com/watch?v=VyTfLV_MNWg
+-----------------------
+
+title: Joe Biden: Should he stay or should he go | 11KM - der tagesschau-Podcast
+length (sek): 1783
+publishedDate: 2024-07-08T21:40:20-07:00
+viewCount: 3698
+likeCount: 55
+url: https://www.youtube.com/watch?v=WmAh8dXLtt4
+-----------------------
+
+title: tagesschau 20:00 Uhr, 08.07.2024
+length (sek): 948
+publishedDate: 2024-07-08T11:35:02-07:00
+viewCount: 121073
+likeCount: 1776
+url: https://www.youtube.com/watch?v=VyTfLV_MNWg
+-----------------------
+
