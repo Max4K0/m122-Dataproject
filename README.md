@@ -57,7 +57,7 @@ Schöne TUI Oberfläche beim starten des Programms.
 ### Bedienungsanleitung:
 Zuerst muss die Lib "Pandas" installiert werden:
 
-"sudo apt install python-pandas"
+"sudo apt install python3-pandas"
 
 Gestartet wird die Python über "python3 YoutubeAnalyser.py"
 
@@ -69,7 +69,7 @@ Diese kann Folgend ausgefüllt werden:
 
 "Downloadart": Wie soll die ausgabe gespeichert sein?
 
-"Modus": None,Filter,Compare,Both- Soll gefiltert, verglichen oder nur ausgegeben werden?
+"Modus": None,Filter,Compare,Both - Soll gefiltert, verglichen oder nur ausgegeben werden?
 
 "API Key": Hier muss der API Key eingefügt werden.
 
@@ -97,6 +97,8 @@ Es freute mich, dass es funktionierte, allerdings konnte ich nicht alle Informat
 
 Mein nächstes Ziel war es fragmente zu erstellen, die immer Teile erfüllen sollen.
 
+-----------------------
+
 Bei mir war das:
 
 API.py->                Greift auf die Python API zu und liesst die Informationen raus.
@@ -107,6 +109,7 @@ Compare_and_filter.py   Vergleicht oder Filtert Daten.
 
 Linkcutter.py->         Schneidet den Youtube link aus, da die API meist nur die Video ID aus dem Link benötigt.
 
+-----------------------
 
 Dies alles habe ich dann in die YoutubeAnalyser.py zusammengefasst.
 
@@ -123,6 +126,7 @@ compare_and_sort->      Vergleicht Daten untereinander.
 
 filter_and_write_data-> Schreibt die Resultate in die Output File. Wenn Filter/Both aktiv ist, dann filtert die Methode auch.
 
+-----------------------
 
 Nun folgt nur noch die Main, welche alles Lädt und anschliessend in den richtigen Modus wechselt.
 
