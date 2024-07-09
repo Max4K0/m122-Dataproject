@@ -19,15 +19,18 @@ def create_default_config(config_file):
         "Downloadpfad": "",
         "Filter": {
             "title": True,
+            "length": True,
             "publishedDate": True,
             "viewCount": True,
             "likeCount": True,
-            "commentCount": True
+            "url": True,
+            "description": True
+
         }
     }
     with open(config_file, 'w') as file:
         json.dump(default_config, file, indent=4)
-    print(f"Standard Konfigurationsdatei {config_file} wurde erstellt.")
+    print(f"Konfigurationsdatei wurde erstellt.")
 
 
 #Einlesen der Konfigurationsdatei und Überprüfung der Einstellungen
@@ -83,10 +86,13 @@ def load_config(config_file):
     filter_settings = config.get('Filter', {})
     settings['Filter'] = {
         'title': filter_settings.get('title', True),
+        'url': filter_settings.get('url', True),
+        'length': filter_settings.get('length', True),
+        'description': filter_settings.get('description', True),
         'publishedDate': filter_settings.get('publishedDate', True),
         'viewCount': filter_settings.get('viewCount', True),
-        'likeCount': filter_settings.get('likeCount', True),
-        'commentCount': filter_settings.get('commentCount', True)
+        'likeCount': filter_settings.get('likeCount', True)
+
     }
     return settings
 
@@ -106,10 +112,16 @@ def get_video_details(video_id):
         data = response.json()
         video_info = {
             'title': data.get('title'),
+            'length (sek)': data.get('lengthSeconds'),
             'publishedDate': data.get('publishedDate'),
-            'viewCount': data.get('viewCount'),
-            'likeCount': data.get('likeCount'),
-            'commentCount': data.get('commentCount')
+            'viewCount': data.get('stats',  {}).get('views'),
+            'likeCount': data.get('stats', {}).get('likes'),
+            'url': f"https://www.youtube.com/watch?v={video_id}",
+            'description': data.get('description'),
+
+
+
+
         }
         return video_info
     else:
@@ -124,29 +136,14 @@ def compare_and_sort(data):
     compare2 = compare.max()
     return compare2.to_dict()
 
-#Funktion zum Schreiben der Arrays in eine .txt
-def write_arrays_to_file(data, filename):
-    with open(filename, 'w') as file:
-        for key, value in data.items():
-            file.write(f"{key}: {value}\n")
-    print(f"Arrays wurden in '{filename}' geschrieben.")
 
-#Funktion zum Filtern
+#Funktion zum Filtern oder ausgeben
 def filter_and_write_data(data, filter_settings, filename):
-    with open(filename, 'w') as file:
+    with open(filename, 'a') as file:
         for key, value in data.items():
-            if filter_settings.get(key, True):
+            if filter_settings.get(key, True) or settings['Modus'] != "Filter" and settings['Modus'] != "Both":
                 file.write(f"{key}: {value}\n")
-    print(f"Gefilterte Daten wurden in '{filename}' geschrieben.")
-
-
-
-
-
-
-
-
-
+        file.write(f"-----------------------\n\n")
 
 
 
@@ -174,20 +171,21 @@ if __name__ == "__main__":
                 all_video_details.append(video_details)
 
         if not all_video_details:
-            raise ValueError("Es gibt keine Videodetails.")
+            raise ValueError("Fehlerhafte Videolinks oder das Limit vom API Key ist erreicht.")
 
         csv = pd.DataFrame(all_video_details)
         csv.to_csv(os.path.join(settings['Downloadpfad'], 'output.csv'), index=False)
 
         if settings['Modus'] == "Compare":
             result = compare_and_sort([csv])
-            write_arrays_to_file(result, 'output.txt')
+            filter_and_write_data(result, 'output.txt')
         elif settings['Modus'] == "None":
-            write_arrays_to_file(all_video_details, 'output.txt')
+            filter_and_write_data(all_video_details, 'output.txt')
 
         elif settings['Modus'] == "Filter":
             for video in all_video_details:
                 filter_and_write_data(video, settings['Filter'], 'output.txt')
+
         elif settings['Modus'] == "Both":
             for video in all_video_details:
                 filter_and_write_data(video, settings['Filter'], 'output.txt')

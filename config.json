@@ -1,14 +1,16 @@
 {
     "Downloadart": "zip",
 	"Modus": "Filter",
-    "API Key": "aa918de1fbmsh5b2652825114a1ep16553ejsn1007eaeace78",
-    "Youtube Links": ["https://www.youtube.com/watch?v=nUmO5ew1fIk", "https://www.youtube.com/watch?v=G73W-rzRF2M"],
+    "API Key": "802b78cd1emshd1d6520bf6233b2p19b20ejsn16acd1ac7a6a",
+    "Youtube Links": ["https://www.youtube.com/watch?v=WmAh8dXLtt4", "https://www.youtube.com/watch?v=VyTfLV_MNWg"],
     "Downloadpfad": "",
     "Filter": {
         "title": true,
+        "length": true,
         "publishedDate": true,
         "viewCount": true,
-        "likeCount": false,
-        "commentCount": false
+        "likeCount": true,
+        "url": false,
+        "description": true
     }
 }
