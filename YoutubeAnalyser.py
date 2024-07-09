@@ -132,7 +132,7 @@ def compare_and_sort(data):
 
 #Funktion zum Filtern oder ausgeben
 def filter_and_write_data(data, filter_settings, filename):
-    with open(settings['Downloadpfad'], filename, 'a') as file:
+    with open(filename, 'a') as file:
         for key, value in data.items():
             if filter_settings.get(key, True) or settings['Modus'] != "Filter" and settings['Modus'] != "Both":
                 file.write(f"{key}: {value}\n")
@@ -162,16 +162,16 @@ if __name__ == "__main__":
 
         if settings['Modus'] == "Compare":
             result = compare_and_sort([csv])
-            filter_and_write_data(result, settings['Filter'], settings['Downloadpfad'] + 'output.txt')
+            filter_and_write_data(result, settings['Filter'], settings['Downloadpfad']+'output.txt')
 
         elif settings['Modus'] == "None" or settings['Modus'] == "Filter":
             for video in all_video_details:
-                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad'] + 'output.txt')
+                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad']+'output.txt')
 
 
         elif settings['Modus'] == "Both":
             for video in all_video_details:
-                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad'] + 'output.txt')
+                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad']+'output.txt')
 
         else:
             print(f"Der Modus {settings['Modus']} wird derzeit nicht unterstützt.")
