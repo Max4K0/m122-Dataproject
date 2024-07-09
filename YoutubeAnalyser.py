@@ -1,3 +1,5 @@
+# Made by Max | Modul: m164 | Juni/Juli 2024 | alle Rechte vorbehalten
+
 import requests
 import pandas as pd
 import json
@@ -160,6 +162,7 @@ if __name__ == "__main__":
         csv = pd.DataFrame(all_video_details)
         csv.to_csv(os.path.join(settings['Downloadpfad'], 'output.csv'), index=False)
 
+        #Modus
         if settings['Modus'] == "Compare":
             result = compare_and_sort([csv])
             filter_and_write_data(result, settings['Filter'], settings['Downloadpfad']+'output.txt')
