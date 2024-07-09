@@ -5,6 +5,7 @@ import pandas as pd
 import json
 import os
 
+
 BASE_URL = 'https://youtube138.p.rapidapi.com/video/details/'
 settings = {}
 
@@ -144,6 +145,7 @@ def filter_and_write_data(data, filter_settings, filename):
 #Main
 if __name__ == "__main__":
 
+
     config_path = 'config.json'
     try:
         settings = load_config(config_path)
@@ -165,16 +167,16 @@ if __name__ == "__main__":
         #Modus
         if settings['Modus'] == "Compare":
             result = compare_and_sort([csv])
-            filter_and_write_data(result, settings['Filter'], settings['Downloadpfad']+'output.txt')
+            filter_and_write_data(result, settings['Filter'],'output.txt')
 
         elif settings['Modus'] == "None" or settings['Modus'] == "Filter":
             for video in all_video_details:
-                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad']+'output.txt')
+                filter_and_write_data(video, settings['Filter'], 'output.txt')
 
 
         elif settings['Modus'] == "Both":
             for video in all_video_details:
-                filter_and_write_data(video, settings['Filter'], settings['Downloadpfad']+'output.txt')
+                filter_and_write_data(video, settings['Filter'], 'output.txt')
 
         else:
             print(f"Der Modus {settings['Modus']} wird derzeit nicht unterstützt.")
@@ -183,3 +185,5 @@ if __name__ == "__main__":
 
     except Exception as e:
         print(e)
+
+
