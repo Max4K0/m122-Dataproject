@@ -180,7 +180,8 @@ if __name__ == "__main__":
             result = compare_and_sort([csv])
             filter_and_write_data(result, 'output.txt')
         elif settings['Modus'] == "None":
-            filter_and_write_data(all_video_details, 'output.txt')
+            for video in all_video_details:
+                filter_and_write_data(video, settings['Filter'], 'output.txt')
 
         elif settings['Modus'] == "Filter":
             for video in all_video_details:
