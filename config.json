@@ -1,6 +1,6 @@
 {
     "Downloadart": "zip",
-	"Modus": "None",
+	"Modus": "Filter",
     "API Key": "9f0ea81ed3msh002ac8e9feb1d19p1df031jsna888119eca0d",
     "Youtube Links": ["https://www.youtube.com/watch?v=WmAh8dXLtt4", "https://www.youtube.com/watch?v=VyTfLV_MNWg"],
     "Downloadpfad": "",
@@ -11,6 +11,6 @@
         "viewCount": true,
         "likeCount": true,
         "url": true,
-        "description": true
+        "description": false
     }
 }

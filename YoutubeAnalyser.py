@@ -167,7 +167,7 @@ if __name__ == "__main__":
         #Modus
         if settings['Modus'] == "Compare":
             result = compare_and_sort([csv])
-            filter_and_write_data(result, settings['Filter'],'output.txt')
+            filter_and_write_data(result, settings['Filter'],'output.txt')  # settings['Downloadpfad'] +'output.txt')
 
         elif settings['Modus'] == "None" or settings['Modus'] == "Filter":
             for video in all_video_details:
